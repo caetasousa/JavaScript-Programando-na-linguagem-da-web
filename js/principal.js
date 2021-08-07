@@ -40,3 +40,42 @@ for(var i = 0 ; i < pacientes.length ; i+=1){
     }
 }
 
+var botaoAdicionar = document.querySelector('#adicionar-paciente');
+botaoAdicionar.addEventListener('click', function(event){
+    event.preventDefault();// nao deixa enviar os dados, pois a intencao e adicionar eles a tabela
+    
+    var form = document.querySelector('#form-adiciona');// captura todo conteudo do form
+    
+    // pegando o valor de cada elemento do form
+    var nome = form.nome.value;
+    var peso = form.peso.value;
+    var altura = form.altura.value;
+    var gordura = form.gordura.value;
+
+    // criar os elementos do html com js
+    var pacienteTr = document.createElement('tr');// cria uma TR
+
+    // cria a td da tr
+    var nomeTd = document.createElement('td');
+    var pesoTd = document.createElement('td');
+    var alturaTd = document.createElement('td');
+    var gorduraTd = document.createElement('td');
+    var imcTd = document.createElement('td');
+
+    // apos criada as tds é preciso colocar o valor capturado dentro delas
+    nomeTd.textContent = nome;
+    pesoTd.textContent = peso;
+    alturaTd.textContent = altura;
+    gorduraTd.textContent = gordura;
+
+    // agora é preciso colocar as tds dentro da tr
+    pacienteTr.appendChild(nomeTd);
+    pacienteTr.appendChild(pesoTd);
+    pacienteTr.appendChild(alturaTd);
+    pacienteTr.appendChild(gorduraTd);
+
+    // colocando a tr dentro da tabela de pacientes
+    var tabela = document.querySelector('#tabela-pacientes');
+    tabela.appendChild(pacienteTr);
+});
+
